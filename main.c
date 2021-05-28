@@ -2,7 +2,7 @@
 
 int main (){
 	int a ;
-	
+	printf("NEW UPDATE");
 	printf("%d", a) ;
 	printf("Hello World");
 	
