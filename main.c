@@ -9,7 +9,7 @@ int main (){
 	printf("--------------Playlist Maker--------------\n");
 	while (1){
 		input = 0 ;
-		printf("Menu:\n1. Make a playlist\n2. Show available song\n3. Add song\n4. Exit");
+		printf("\nMenu:\n1. Make a playlist\n2. Show available song\n3. Add song\n4. About\n5. Exit");
 		printf("\n\nYour option:") ;
 		scanf("%d", &input) ;
 		switch (input) {
@@ -46,9 +46,16 @@ int main (){
 				scanf("%d", &input) ;
 				while (1){
 					if ( input == 1){
-						printf("\n1.Add Song\n2. Remove song\n\nYour option: ") ;
+						printf("\n1. Add Song\n2. Remove song\n\nYour option: ") ;
 						input = 0 ;
 						scanf("%d", &input) ;
+						if ( input == 1){
+							printf("ADD SONG\n"); // insert function here
+							printf("\nDISPLAY PLAYLIST\n") ; //replace with function
+						} else if ( input == 2){
+							printf("REMOVE SONG\n"); // insert function here
+							printf("\nDISPLAY PLAYLIST\n") ; //replace with function
+						}
 						break ;						
 					} else if ( input == 2){
 						printf("Are you sure you want to delete this Playlist? (y/n)\n") ;
@@ -70,8 +77,12 @@ int main (){
 				printf("Triggered 3\n");
 				break ;
 			case 4:
-				printf("Triggered 4\n");
-				return 0;
+				printf("-------------- Kelompok Oreo -------------\n");
+				printf("This program is made by:\n1.Louis Mayco Dillon Wijaya \t/ 1906379296\n2.Raihan Muhammad Syahran \t/ 1906379301\n3.Verel Sormin \t\t\t/ 1906379333\n") ;
+				break ;
+			case 5:
+				printf("GoodBye!\n") ;
+				return 0 ;
 			default:
 				printf("\nWrong Input\n") ;
 				printf("Please make sure your input range between 0 to 4\n\n");
