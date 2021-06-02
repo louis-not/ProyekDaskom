@@ -1,28 +1,33 @@
 #include <stdio.h>
+#include <string.h>
 
 int main (){
 	FILE *fPtr ;
-	char title[10], author[10], yorno ;
-	int i = 0, year, flag ;
+	char title[21], author[15], yorno ;
+	int i , year, flag ;
 	
 	fPtr = fopen("songlist.txt", "r") ;
 	if ((fPtr) == NULL ){
-		printf("there is no such file") ;
+		printf("songlist.txt created\n") ;
 		fPtr = fopen("songlist.txt", "w+") ;
 //		fclose(fPtr) ;
 	} else { 
 		fclose(fPtr) ;
 		fPtr = fopen("songlist.txt", "a") ;
+		for (i = getc(fPtr); i != EOF; i = getc(fPtr))
+        if (i == '\n') 
+            i++ ;
 	}
 	while ( 1 ){
 		printf("Insert song title: ") ;
-		scanf("%s", &title) ;
+		fgets(title,21,stdin);
 		printf("Insert author: ") ;
-		scanf("%s", &author) ;
+		fgets(author,15,stdin);
 		printf("Insert song year: ");
 		scanf("%d", &year) ;
+		
 		i ++ ;
-		fprintf(fPtr, "%d \t %s \t\t %s \t\t %d\n", i, title, author, year );
+		fprintf(fPtr, "%d,%s,%s,%d\n", i, title, author, year );
 		while(1){
 			printf("Do you want to insert another song? (y/n): ") ;
 			scanf("%c", &yorno) ;
@@ -46,3 +51,4 @@ int main (){
 
 	return 0 ;
 }
+
