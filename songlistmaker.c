@@ -4,7 +4,7 @@
 int main (){
 	FILE *fPtr ;
 	char title[21], author[15], yorno ;
-	int i , year, flag ;
+	int i=0 , year, flag ;
 	
 	fPtr = fopen("songlist.txt", "r") ;
 	if ((fPtr) == NULL ){
@@ -12,11 +12,13 @@ int main (){
 		fPtr = fopen("songlist.txt", "w+") ;
 //		fclose(fPtr) ;
 	} else { 
+		for (yorno = getc(fPtr); yorno != EOF; yorno = getc(fPtr)){
+		    if (yorno == '\n') 
+            i++ ;
+//			printf("%d\n",i);	
+		}
 		fclose(fPtr) ;
 		fPtr = fopen("songlist.txt", "a") ;
-		for (i = getc(fPtr); i != EOF; i = getc(fPtr))
-        if (i == '\n') 
-            i++ ;
 	}
 	while ( 1 ){
 		printf("Insert song title: ") ;
@@ -27,9 +29,9 @@ int main (){
 		scanf("%[^\n]%*c", author) ;
 		printf("Insert song year: ");
 		scanf("%d", &year) ;
-		
-		i ++ ;
-		fprintf(fPtr, "%d,%s,%s,%d\n", i, title, author, year );
+//		i++ ;
+		printf("%d\t%s\t\t%s\t\t%d\n", i+1, title, author, year );
+		fprintf(fPtr, "%d\t%s\t\t%s\t\t%d\n", i+1, title, author, year );
 		while(1){
 			printf("Do you want to insert another song? (y/n): ") ;
 			scanf("%c", &yorno) ;
