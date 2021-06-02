@@ -1,3 +1,4 @@
+//#include "addsong.h"
 #include <stdio.h>
 #include <string.h>
 
@@ -75,6 +76,7 @@ int main (){
 				break ;				
 			case 3:
 				printf("Triggered 3\n");
+//				addsong();
 				break ;
 			case 4:
 				printf("-------------- Kelompok Oreo -------------\n");
