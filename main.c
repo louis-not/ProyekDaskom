@@ -79,6 +79,7 @@ int main (){
 //				addsong();
 				break ;
 			case 4:
+				system("cls") ;
 				printf("-------------- Kelompok Oreo -------------\n");
 				printf("This program is made by:\n1.Louis Mayco Dillon Wijaya \t/ 1906379296\n2.Raihan Muhammad Syahran \t/ 1906379301\n3.Verel Sormin \t\t\t/ 1906379333\n") ;
 				break ;
