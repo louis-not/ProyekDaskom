@@ -118,7 +118,7 @@ void DisplayTable(char *filename){
                 {   
                     printf("%s\t",token);
                     token = strtok(NULL,s);
-				}else {
+                } else {
                     printf("%s\n",token);
                     token = strtok(NULL,s);
                 }       

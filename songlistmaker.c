@@ -30,8 +30,8 @@ int main (){
 		printf("Insert song year: ");
 		scanf("%d", &year) ;
 //		i++ ;
-		printf("%d\t%s\t\t%s\t\t%d\n", i+1, title, author, year );
-		fprintf(fPtr, "%d\t%s\t\t%s\t\t%d\n", i+1, title, author, year );
+//		printf("%d,%s,%s,%d\n", i+1, title, author, year );
+		fprintf(fPtr, "%d%s%s%d\n", i+1, title, author, year );
 		while(1){
 			printf("Do you want to insert another song? (y/n): ") ;
 			scanf("%c", &yorno) ;
