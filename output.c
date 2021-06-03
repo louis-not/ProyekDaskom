@@ -12,18 +12,28 @@ void main()
         char buf[100];
         printf("No\t");
         printf("Judul Lagu\t");
-        printf("Penulis\t");
+        printf("Penulis Lagu\t");
         printf("Year\n\n");
         while(fgets(buf, sizeof buf, fp) != NULL)
         {
             token = strtok(buf, s);
             for(i=0;i<4;i++)
             {
-                if(i<3)
+					if(i<3)
                 {   
-                    printf("%s\t",token);
+                    printf("%s",token);
+                    if (strlen(token)<2) {
+					printf("\t");
+					}
+                    else if (strlen(token)<8) {
+					printf("\t\t");
+					}
+					else if (strlen(token)<16) {
+					printf("\t");
+					}
                     token = strtok(NULL,s);
-                } else {
+                }
+					else {
                     printf("%s\n",token);
                     token = strtok(NULL,s);
                 }       
@@ -31,6 +41,6 @@ void main()
         }
         fclose(fp);
     } else {
-        perror("song.txt");
+        perror("songlist.txt");
     }   
 }   
