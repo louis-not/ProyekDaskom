@@ -6,7 +6,7 @@ int addSong(char*) ;
 int main (){
 
 	int input;
-	char yorno,*playlist_name, *filename;
+	char yorno, *filename;
 	
 	printf("--------------Playlist Maker--------------\n");
 	while (1){
@@ -23,15 +23,15 @@ int main (){
 				scanf("%d", &input) ;
 				while (1){
 					if ( input == 1) {
-						playlist_name = "myPlaylist_A" ;
+						filename = "myPlaylist_A.txt" ;
 						break;	
 					}
 					else if (input == 2) {
-						playlist_name = "myPlaylist_B" ;
+						filename = "myPlaylist_B.txt" ;
 						break ;
 					}
 					else if (input == 3) {
-						playlist_name = "myPlaylist_C" ;
+						filename = "myPlaylist_C.txt" ;
 						break ;
 					}
 					else{
@@ -39,8 +39,8 @@ int main (){
 						scanf("%d", &input) ;
 					} 
 				}
-				printf("%s\n", playlist_name) ; // for checking only
-				printf("\nDISPLAY PLAYLIST\n") ; //replace with function
+
+				DisplayTable(filename) ;
 				printf("\n------------------------------------------\n") ;
 				printf("1. Edit Playlist\n2. Delete Playlist");
 				printf("\n\nYour option:");
@@ -64,7 +64,7 @@ int main (){
 						scanf("%d",&input);
 						scanf("%c", &yorno) ;
 							if ( yorno == 'Y' || yorno == 'y'){
-								printf("DELETE MEMORY for %s\n", playlist_name); //replace with function
+								printf("DELETE MEMORY for %s\n", filename); //replace with function
 								break ;
 							} else if ( yorno == 'N' || yorno == 'n') {
 								break;
