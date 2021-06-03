@@ -11,7 +11,7 @@ typedef struct{
 int main(){
 	FILE *fp = fopen("song.txt", "r+");
 	int i ,kounter = 0,year,a,cond = 0,max,remove;
-    char testi[100],author[100], *token,buf[100],comp[100];
+    char testi[100],singer[100], *token,buf[100],comp[100];
     const char s[2] = ",";
     
     Song songtitle[5];
@@ -54,30 +54,44 @@ int main(){
 	}
 	fclose(fp);
 	max = i;
+	printf("%d", i);
 	
 	printf("Select Choices (1)ADD, (2)REMOVE :");
 	scanf("%d", &cond);
-	getchar();
+
 	while (i != 0)
 	{
 		if (cond == 1)
 		{
+			if (max == 5)
+			{
+				printf("Program Tidak Dapat Menampung Lebih dari 5 Lagu, Tidak dapat menambah lagu");
+				printf("\n\nDo you want to add/remove another song? (Press any number to continue, 0 if you're satisfied with your current song now)");
+				scanf("%d",&i);
+				if (i == 0) break;
+				printf("Pilih 1 Untuk Add Lagu, Pilih 2 untuk Remove Lagu :");
+				scanf("%d", &cond);				
+				continue;
+			}
+			getchar();			
 			printf("Add Song Title : ");
-			fgets(testi,100,stdin);
-			strcpy(songtitle[i].title, testi);
 		
+			gets(testi);
+			strcpy(songtitle[max].title, testi);
+
 			printf("Add Song Author : ");
-			fgets(author,100,stdin);
-			strcpy(songtitle[i].author,author);
+			gets(singer);
+			strcpy(songtitle[max].author, singer);
 		
 			printf("Add Song Year : ");
 			scanf("%d", &year);
-			songtitle[i].year = year;
-			max = i;
+			songtitle[max].year = year;
+			
+			max++;
 		}
 		else if (cond == 2)
 		{
-			printf("Current Song in your Playlist :");
+			printf("Current Song in your Playlist :\n");
 			for (i = 0; i < max ;i++)
 			{
 			printf("\n%d\t%s\t%s\t%d\n",i+1,songtitle[i].title,songtitle[i].author,songtitle[i].year);
@@ -97,20 +111,38 @@ int main(){
 				max--;
 				songtitle[max].title[0] = '\0';
 				songtitle[max].author[0] = '\0';
-				songtitle[max].year = 0;				
+				songtitle[max].year = 0;
+						
 			}
-			
+			printf("\nCurrent Song After Editing \n\n");
+			for (i = 0; i < max ;i++)
+			{
+				printf("\n%d\t%s\t%s\t%d\n",i+1,songtitle[i].title,songtitle[i].author,songtitle[i].year);
+			}			
 		}
-		printf("Do you want to add/remove another song?");
+		printf("\nDo you want to add/remove another song? (Press any number to continue, 0 if you're satisfied with your current song now)");
 		scanf("%d",&i);
+		if (i == 0) break;
+		printf("Pilih 1 Untuk Add Lagu, Pilih 2 untuk Remove Lagu :");
+		scanf("%d", &cond);
 	}
-
-
-for (i = 0; i < max ;i++)
+	printf("\nCurrent Playlist :\n\n");
+	for (i = 0; i < max ;i++)
 	{
-		printf("\n%d\t%s\t%s\t%d\n",i+1,songtitle[i].title,songtitle[i].author,songtitle[i].year);
+		printf("%d\t%s\t%s\t%d\n",i+1,songtitle[i].title,songtitle[i].author,songtitle[i].year);
 	}
-
-
+	
+	printf("Input All of the Playlist into file.txt\n");
+	fp = fopen("song.txt", "w");
+	for (i = 0; i < max ;i++)
+	{
+		fprintf(fp,"%d,%s,%s,%d\n",i+1,songtitle[i].title,songtitle[i].author,songtitle[i].year,i);
+	}
+	printf("\nClose The Filename.txt");
+	fclose(fp);
+//1,Wonderland,Michael Bay,2020
+//2,The Champions,Your Mom,2020
+//3,Great Song,Joe Mama,2020
+//4,Somebody,Sugondese,2020
 	return 0;
 }
