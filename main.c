@@ -7,11 +7,12 @@ int main (){
 
 	int input;
 	char yorno, *filename;
-	
-	printf("--------------Playlist Maker--------------\n");
+	FILE *fp;
+
 	while (1){
 		input = 0 ;
-		printf("\nMenu:\n1. Make a playlist\n2. Show available song\n3. Add song\n4. About\n5. Exit");
+		printf("--------------Playlist Maker--------------\n\n");
+		printf("Menu:\n1. Make a playlist\n2. Show available song\n3. Add song\n4. About\n5. Exit");
 		printf("\n\nYour option: ") ;
 		scanf("%d", &input) ;
 		switch (input) {
@@ -39,8 +40,9 @@ int main (){
 						scanf("%d", &input) ;
 					} 
 				}
-
+				printf("\n\nOpening %s\n\n", filename) ;
 				DisplayTable(filename) ;
+				fp = fopen(filename,"r") ;
 				printf("\n------------------------------------------\n") ;
 				printf("1. Edit Playlist\n2. Delete Playlist");
 				printf("\n\nYour option:");
@@ -52,21 +54,49 @@ int main (){
 						input = 0 ;
 						scanf("%d", &input) ;
 						if ( input == 1){
-							printf("ADD SONG\n"); // insert function here
-							printf("\nDISPLAY PLAYLIST\n") ; //replace with function
+							do{
+								DisplayTable(filename) ;
+								printf("ADD SONG\n"); // insert function here
+								
+								printf("Add another song? (y/n): ") ;
+								scanf("%c", &yorno) ;
+								system("cls");
+							if ( yorno == 'Y' || yorno == 'y') continue ;
+							else if ( yorno == 'N' || yorno == 'n') {
+								fclose(fp) ;
+								break ;
+								}
+							} while ( 1 ) ;
 						} else if ( input == 2){
-							printf("REMOVE SONG\n"); // insert function here
-							printf("\nDISPLAY PLAYLIST\n") ; //replace with function
+							do{
+								DisplayTable(filename) ;
+								printf("REMOVE SONG\n"); // insert function here
+								
+								printf("Remove another song? (y/n): ") ;
+								scanf("%c", &yorno) ;
+								system("cls");
+							if ( yorno == 'Y' || yorno == 'y') continue ;
+							else if ( yorno == 'N' || yorno == 'n'){
+								fclose(fp) ;
+								break ;
+								}
+							} while ( 1 ) ;
 						}
 						break ;						
 					} else if ( input == 2){
 						printf("Are you sure you want to delete this Playlist? (y/n)\n") ;
 						scanf("%d",&input);
-						scanf("%c", &yorno) ;
+						scanf("%c",&yorno) ;
 							if ( yorno == 'Y' || yorno == 'y'){
+								fclose(fp) ;
+								fp = fopen(filename,"w") ;
+								fclose(fp) ;
+								fp = fopen(filename,"r") ;
 								printf("DELETE MEMORY for %s\n", filename); //replace with function
+								system("cls") ;
 								break ;
 							} else if ( yorno == 'N' || yorno == 'n') {
+								system("cls") ;
 								break;
 							}
 					} else 	printf("Wrong input,Please make sure your input is between 0 to 3") ;
@@ -108,18 +138,28 @@ void DisplayTable(char *filename){
         char buf[100];
         printf("No\t");
         printf("Judul Lagu\t");
-        printf("Penulis\t");
+        printf("Penulis Lagu\t");
         printf("Year\n\n");
         while(fgets(buf, sizeof buf, fp) != NULL)
         {
             token = strtok(buf, s);
             for(i=0;i<4;i++)
             {
-                if(i<3)
+					if(i<3)
                 {   
-                    printf("%s\t",token);
+                    printf("%s",token);
+                    if (strlen(token)<2) {
+					printf("\t");
+					}
+                    else if (strlen(token)<8) {
+					printf("\t\t");
+					}
+					else if (strlen(token)<16) {
+					printf("\t");
+					}
                     token = strtok(NULL,s);
-                } else {
+                }
+					else {
                     printf("%s\n",token);
                     token = strtok(NULL,s);
                 }       
@@ -127,8 +167,8 @@ void DisplayTable(char *filename){
         }
         fclose(fp);
     } else {
-        perror("song.txt");
-    }   
+        perror("songlist.txt");
+    }    
 }   
 
 int addSong (char *filename){
