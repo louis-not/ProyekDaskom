@@ -2,7 +2,7 @@
 #include <string.h>
 
 void DisplayTable(char*) ;
-
+int addSong(char*) ;
 int main (){
 
 	int input;
@@ -12,7 +12,7 @@ int main (){
 	while (1){
 		input = 0 ;
 		printf("\nMenu:\n1. Make a playlist\n2. Show available song\n3. Add song\n4. About\n5. Exit");
-		printf("\n\nYour option:") ;
+		printf("\n\nYour option: ") ;
 		scanf("%d", &input) ;
 		switch (input) {
 			case 1:
@@ -77,8 +77,9 @@ int main (){
 				DisplayTable(filename) ;
 				break ;				
 			case 3:
-				printf("Triggered 3\n");
-//				addsong();
+				system("cls");
+				filename = "songlist.txt" ;
+				while ( addSong(filename)) ;
 				break ;
 			case 4:
 				system("cls") ;
@@ -129,3 +130,58 @@ void DisplayTable(char *filename){
         perror("song.txt");
     }   
 }   
+
+int addSong (char *filename){
+	FILE *fPtr ;
+	char title[21], author[15], yorno ;
+	int i=0 , year, flag ;
+	
+	fPtr = fopen(filename, "r") ;
+	if ((fPtr) == NULL ){
+		printf("songlist.txt created\n") ;
+		fPtr = fopen("songlist.txt", "w+") ;
+//		fclose(fPtr) ;
+	} else { 
+		for (yorno = getc(fPtr); yorno != EOF; yorno = getc(fPtr)){
+		    if (yorno == '\n') 
+            i++ ;
+//			printf("%d\n",i);	
+		}
+		fclose(fPtr) ;
+		fPtr = fopen("songlist.txt", "a") ;
+	}
+	while ( 1 ){
+		printf("Insert song title: ") ;
+		scanf("\n");
+		scanf("%[^\n]%*c", title) ;
+		printf("Insert author: ") ;
+		scanf("\n");
+		scanf("%[^\n]%*c", author) ;
+		printf("Insert song year: ");
+		scanf("%d", &year) ;
+//		i++ ;
+//		printf("%d,%s,%s,%d\n", i+1, title, author, year );
+		fprintf(fPtr, "%d,%s,%s,%d\n", i+1, title, author, year );
+		while(1){
+			printf("Do you want to insert another song? (y/n): ") ;
+			scanf("%c", &yorno) ;
+			scanf("%c", &yorno) ;
+			if ( yorno == 'Y' || yorno == 'y') {
+				printf("\n") ;
+				flag = 1 ;
+			} else if ( yorno == 'N' || yorno == 'n'){
+				flag = 0 ;
+				system("cls") ;
+//				printf("Program quit") ;
+				fclose(fPtr) ;
+				return 0 ;
+			} else {
+				flag = 0;
+				printf("invalid input");
+				continue;
+			}
+			if (flag == 1) break ;		
+		}
+	}
+	return 0 ;
+}
