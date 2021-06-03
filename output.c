@@ -3,7 +3,7 @@
 
 void main()
 {
-    FILE *fp = fopen("song.txt", "r");
+    FILE *fp = fopen("songlist.txt", "r");
     const char s[2] = ",";
     char *token;
     int i;
@@ -12,7 +12,7 @@ void main()
         char buf[100];
         printf("No\t");
         printf("Judul Lagu\t");
-        printf("Genre\t");
+        printf("Penulis\t");
         printf("Year\n\n");
         while(fgets(buf, sizeof buf, fp) != NULL)
         {

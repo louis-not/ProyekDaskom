@@ -1,11 +1,12 @@
-//#include "addsong.h"
 #include <stdio.h>
 #include <string.h>
+
+void DisplayTable(char*) ;
 
 int main (){
 
 	int input;
-	char yorno,*playlist_name = "myPlaylist_X";
+	char yorno,*playlist_name, *filename;
 	
 	printf("--------------Playlist Maker--------------\n");
 	while (1){
@@ -72,7 +73,8 @@ int main (){
 				}
 				break ;
 			case 2:
-				printf("Triggered 2\n");
+				filename = "songlist.txt";
+				DisplayTable(filename) ;
 				break ;				
 			case 3:
 				printf("Triggered 3\n");
@@ -94,3 +96,36 @@ int main (){
 	
 	return 0 ;
 }
+
+void DisplayTable(char *filename){
+    FILE *fp = fopen(filename, "r");
+    const char s[2] = ",";
+    char *token;
+    int i;
+    if(fp != NULL)
+    {
+        char buf[100];
+        printf("No\t");
+        printf("Judul Lagu\t");
+        printf("Penulis\t");
+        printf("Year\n\n");
+        while(fgets(buf, sizeof buf, fp) != NULL)
+        {
+            token = strtok(buf, s);
+            for(i=0;i<4;i++)
+            {
+                if(i<3)
+                {   
+                    printf("%s\t",token);
+                    token = strtok(NULL,s);
+				}else {
+                    printf("%s\n",token);
+                    token = strtok(NULL,s);
+                }       
+            }
+        }
+        fclose(fp);
+    } else {
+        perror("song.txt");
+    }   
+}   
