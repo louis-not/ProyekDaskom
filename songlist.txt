@@ -3,3 +3,5 @@
 3,Dekat di Hati,RAN,2013
 4,Scar Tissue,RHCP,1999
 5,Wonderwall,Oasis,1995
+6,Minefields,Fouzia,2020
+7,Levitating,Dua pipa,2021

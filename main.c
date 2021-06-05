@@ -238,6 +238,7 @@ int addSong (char *filename){
 			if (flag == 1) break ;		
 		}
 	}
+	fclose(fPtr) ;
 	return 0 ;
 }
 
@@ -287,7 +288,6 @@ void removeplaylist( char *filename){
 	}
 	fclose(fp);
 	max = i;
-//	printf("%d", i);
 	printf("\nSelect which song that you want to remove(by number): ");
 	scanf("%d",&remove);
 	if (remove > 0)
@@ -316,7 +316,3 @@ void removeplaylist( char *filename){
 //	printf("\nClose %s\n", filename);
 	fclose(fp);
 }
-//		else if (cond == 2)
-//		{
-			
-//		}
