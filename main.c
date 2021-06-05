@@ -1,8 +1,18 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+
+typedef struct{
+	char title[100];
+	char author[100];
+	int year;
+	
+}Song;
 
 void DisplayTable(char*) ;
 int addSong(char*) ;
+void addplaylist(char*) ;
+void removeplaylist(char *) ;
 int main (){
 
 	int input;
@@ -69,14 +79,17 @@ int main (){
 							} while ( 1 ) ;
 						} else if ( input == 2){
 							do{
-								DisplayTable(filename) ;
-								printf("REMOVE SONG\n"); // insert function here
-								
-								printf("Remove another song? (y/n): ") ;
-								scanf("%c", &yorno) ;
 								system("cls");
+								DisplayTable(filename) ;
+//								printf("REMOVE SONG\n"); // insert function here
+								removeplaylist(filename) ;
+								printf("\nRemove another song? (y/n): ") ;
+								scanf("%d",&input) ;
+								scanf("%c", &yorno) ;
+
 							if ( yorno == 'Y' || yorno == 'y') continue ;
 							else if ( yorno == 'N' || yorno == 'n'){
+								system("cls") ;
 								fclose(fp) ;
 								break ;
 								}
@@ -103,8 +116,11 @@ int main (){
 				}
 				break ;
 			case 2:
+				system("cls") ;
+				printf("\n") ;
 				filename = "songlist.txt";
 				DisplayTable(filename) ;
+				printf("\n") ;
 				break ;				
 			case 3:
 				system("cls");
@@ -133,8 +149,7 @@ void DisplayTable(char *filename){
     const char s[2] = ",";
     char *token;
     int i;
-    if(fp != NULL)
-    {
+    if(fp != NULL){
         char buf[100];
         printf("No\t");
         printf("Judul Lagu\t");
@@ -168,7 +183,7 @@ void DisplayTable(char *filename){
         fclose(fp);
     } else {
         perror("songlist.txt");
-    }    
+    }       
 }   
 
 int addSong (char *filename){
@@ -225,3 +240,83 @@ int addSong (char *filename){
 	}
 	return 0 ;
 }
+
+void removeplaylist( char *filename){
+	FILE *fp = fopen(filename, "r+");
+	int i ,kounter = 0,year,a,max,remove;
+    char testi[100],singer[100], *token,buf[100],comp[100];
+    const char s[2] = ",";
+    
+    Song songtitle[5];
+    
+    while(fgets(buf, sizeof buf, fp) != NULL)
+    {
+    	token = strtok(buf, s);
+        strcpy(comp,token);
+        token = strtok(NULL,s);
+	}
+	rewind(fp);
+	for (i = 0; i < atoi(comp); i++ )
+	{
+		fgets(buf, sizeof buf, fp);
+		{
+			token = strtok(buf, s);
+            for(a=0;a<4;a++)
+            {
+                if (a == 1)
+                {
+                	strcpy(songtitle[i].title, token);
+                	token = strtok(NULL,s);
+				}
+				else if (a == 2)
+                {   
+                    strcpy(songtitle[i].author, token);
+                    token = strtok(NULL,s);
+                }       
+                else if (a == 3)
+                {
+                	songtitle[i].year = atoi(token);
+                	token = strtok(NULL,s);
+				}
+				else
+				{
+					token = strtok(NULL,s);
+				}
+            }
+		}
+	}
+	fclose(fp);
+	max = i;
+//	printf("%d", i);
+	printf("\nSelect which song that you want to remove(by number): ");
+	scanf("%d",&remove);
+	if (remove > 0)
+	{
+		remove--;
+		for (remove; remove < max; remove++)
+		{
+			strcpy(songtitle[remove].title,songtitle[remove+1].title);
+			strcpy(songtitle[remove].author,songtitle[remove+1].author);
+			songtitle[remove].year = songtitle[remove+1].year;
+		}
+		max--;
+		songtitle[max].title[0] = '\0';
+		songtitle[max].author[0] = '\0';
+		songtitle[max].year = 0;
+	};
+	printf("\nCurrent Song After Editing \n\n");
+	for (i = 0; i < max ;i++)
+		printf("\n%d\t%s\t%s\t%d\n",i+1,songtitle[i].title,songtitle[i].author,songtitle[i].year);
+//	printf("Input All of the Playlist into %s\n", filename);
+	fp = fopen(filename, "w");
+	for (i = 0; i < max ;i++)
+	{
+		fprintf(fp,"%d,%s,%s,%d\n",i+1,songtitle[i].title,songtitle[i].author,songtitle[i].year,i);
+	}
+//	printf("\nClose %s\n", filename);
+	fclose(fp);
+}
+//		else if (cond == 2)
+//		{
+			
+//		}

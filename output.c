@@ -7,8 +7,7 @@ void main()
     const char s[2] = ",";
     char *token;
     int i;
-    if(fp != NULL)
-    {
+    if(fp != NULL){
         char buf[100];
         printf("No\t");
         printf("Judul Lagu\t");

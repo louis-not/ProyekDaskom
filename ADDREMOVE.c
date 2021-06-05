@@ -9,7 +9,7 @@ typedef struct{
 	
 }Song;
 int main(){
-	FILE *fp = fopen("song.txt", "r+");
+	FILE *fp = fopen("songlist.txt", "r+");
 	int i ,kounter = 0,year,a,cond = 0,max,remove;
     char testi[100],singer[100], *token,buf[100],comp[100];
     const char s[2] = ",";
@@ -54,7 +54,7 @@ int main(){
 	}
 	fclose(fp);
 	max = i;
-	printf("%d", i);
+//	printf("%d", i);
 	
 	printf("Select Choices (1)ADD, (2)REMOVE :");
 	scanf("%d", &cond);
