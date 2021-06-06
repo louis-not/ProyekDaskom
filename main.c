@@ -118,7 +118,7 @@ int main (){
 				printf("\n") ;
 				filename = "songlist.txt";
 				DisplayTable(filename) ;
-				printf("Play a song?\n") ;
+//				printf("Play a song?\n") ;
 				printf("\n") ;
 				break ;				
 			case 3:
@@ -186,8 +186,9 @@ void DisplayTable(char *filename){
 
 int addSong (char *filename){
 	FILE *fPtr ;
-	char title[21], author[15], yorno ;
-	int i=0 , year, flag ;
+	Song input ;
+	char yorno ;
+	int i=0 , flag ;
 	
 	fPtr = fopen(filename, "r") ;
 	if ((fPtr) == NULL ){
@@ -206,15 +207,15 @@ int addSong (char *filename){
 	while ( 1 ){
 		printf("Insert song title: ") ;
 		scanf("\n");
-		scanf("%[^\n]%*c", title) ;
+		scanf("%[^\n]%*c", input.title) ;
 		printf("Insert author: ") ;
 		scanf("\n");
-		scanf("%[^\n]%*c", author) ;
+		scanf("%[^\n]%*c", input.author) ;
 		printf("Insert song year: ");
-		scanf("%d", &year) ;
+		scanf("%d", &input.year) ;
 //		i++ ;
 //		printf("%d,%s,%s,%d\n", i+1, title, author, year );
-		fprintf(fPtr, "%d,%s,%s,%d\n", i+1, title, author, year );
+		fprintf(fPtr, "%d,%s,%s,%d\n", i+1, input.title, input.author, input.year );
 		while(1){
 			printf("Do you want to insert another song? (y/n): ") ;
 			scanf("%c", &yorno) ;
