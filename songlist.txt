@@ -5,3 +5,5 @@
 5,Wonderwall,Oasis,1995
 6,Minefields,Fouzia,2020
 7,Levitating,Dua pipa,2021
+8,Get Lucky,DaftPunk,2011
+9,C.H.R.I.S.Y.E,diskoria,2021

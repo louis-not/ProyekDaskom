@@ -31,7 +31,7 @@ int main (){
 		scanf("%d", &year) ;
 //		i++ ;
 //		printf("%d,%s,%s,%d\n", i+1, title, author, year );
-		fprintf(fPtr, "%d%s%s%d\n", i+1, title, author, year );
+		fprintf(fPtr, "%d,%s,%s,%d\n", i+1, title, author, year );
 		while(1){
 			printf("Do you want to insert another song? (y/n): ") ;
 			scanf("%c", &yorno) ;

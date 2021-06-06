@@ -6,7 +6,6 @@ typedef struct{
 	char title[100];
 	char author[100];
 	int year;
-	
 }Song;
 
 void DisplayTable(char*) ;
@@ -86,7 +85,6 @@ int main (){
 								printf("\nRemove another song? (y/n): ") ;
 								scanf("%d",&input) ;
 								scanf("%c", &yorno) ;
-
 							if ( yorno == 'Y' || yorno == 'y') continue ;
 							else if ( yorno == 'N' || yorno == 'n'){
 								system("cls") ;
@@ -120,6 +118,7 @@ int main (){
 				printf("\n") ;
 				filename = "songlist.txt";
 				DisplayTable(filename) ;
+				printf("Play a song?\n") ;
 				printf("\n") ;
 				break ;				
 			case 3:
@@ -140,7 +139,6 @@ int main (){
 				printf("Please make sure your input range between 0 to 4\n\n");
 		}
 	}
-	
 	return 0 ;
 }
 
@@ -245,7 +243,7 @@ int addSong (char *filename){
 void removeplaylist( char *filename){
 	FILE *fp = fopen(filename, "r+");
 	int i ,kounter = 0,year,a,max,remove;
-    char testi[100],singer[100], *token,buf[100],comp[100];
+    char testi[100],singer[100], *token,buf[100],comp[100]; 
     const char s[2] = ",";
     
     Song songtitle[5];
