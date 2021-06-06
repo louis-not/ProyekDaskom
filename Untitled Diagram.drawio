@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2021-06-06T06:11:39.953Z" agent="5.0 (Windows)" etag="n5cb6hkTbfhVAp9XG60W" version="14.7.3" type="github">
+<mxfile host="app.diagrams.net" modified="2021-06-06T06:20:56.521Z" agent="5.0 (Windows)" etag="yAxP_WIruR8zDz86JIzz" version="14.7.3" type="github">
   <diagram id="aWVC-QR9eLqy2IWsYxHA" name="Page-1">
-    <mxGraphModel dx="2770" dy="1317" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1750" dy="1973" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -35,10 +35,10 @@
           <mxGeometry x="169.37" y="592.5" width="80" height="50" as="geometry" />
         </mxCell>
         <mxCell id="U4d_zl4pL8MZ5YhkzOWC-6" value="&lt;div&gt;( B )&lt;/div&gt;&lt;div&gt;&lt;div&gt;Tampilkan lagu yang ada di filename&lt;br&gt;&lt;/div&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FF6666;" parent="1" vertex="1">
-          <mxGeometry x="410" y="835" width="150" height="65" as="geometry" />
+          <mxGeometry x="450" y="842.5" width="150" height="65" as="geometry" />
         </mxCell>
         <mxCell id="U4d_zl4pL8MZ5YhkzOWC-9" value="&lt;div&gt;( C )&lt;br&gt;&lt;/div&gt;&lt;div&gt;Tambahkan lagu ke songlist.txt&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#66B2FF;" parent="1" vertex="1">
-          <mxGeometry x="410" y="917.5" width="150" height="65" as="geometry" />
+          <mxGeometry x="450" y="925" width="150" height="65" as="geometry" />
         </mxCell>
         <mxCell id="iicLnVmGQJoIKl0AOZ3f-45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="U4d_zl4pL8MZ5YhkzOWC-14" target="iicLnVmGQJoIKl0AOZ3f-36">
           <mxGeometry relative="1" as="geometry">
@@ -235,7 +235,7 @@
           <mxGeometry x="70" y="802.5" width="40" height="40" as="geometry" />
         </mxCell>
         <mxCell id="U4d_zl4pL8MZ5YhkzOWC-115" value="&lt;div&gt;( A )&lt;br&gt;&lt;/div&gt;&lt;div&gt;membuat Playlist, dari lagu pada songlist.txt&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFF99;" parent="1" vertex="1">
-          <mxGeometry x="410" y="755" width="150" height="65" as="geometry" />
+          <mxGeometry x="450" y="762.5" width="150" height="65" as="geometry" />
         </mxCell>
         <mxCell id="iicLnVmGQJoIKl0AOZ3f-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="iicLnVmGQJoIKl0AOZ3f-1" target="U4d_zl4pL8MZ5YhkzOWC-14">
           <mxGeometry relative="1" as="geometry" />
@@ -528,7 +528,7 @@
           <mxGeometry x="1955" y="112" width="10" height="10" as="geometry" />
         </mxCell>
         <mxCell id="iicLnVmGQJoIKl0AOZ3f-143" value="M" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#33FF33;" vertex="1" parent="1">
-          <mxGeometry x="1945" y="743.75" width="30" height="30" as="geometry" />
+          <mxGeometry x="1945" y="757" width="30" height="30" as="geometry" />
         </mxCell>
         <mxCell id="iicLnVmGQJoIKl0AOZ3f-145" value="yes" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="2005" y="596.25" width="40" height="20" as="geometry" />
@@ -611,6 +611,12 @@
         </mxCell>
         <mxCell id="iicLnVmGQJoIKl0AOZ3f-188" value="B&#39;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FF9999;" vertex="1" parent="1">
           <mxGeometry x="1038.47" y="842" width="24.31" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="iicLnVmGQJoIKl0AOZ3f-214" value="&lt;div&gt;addplaylist&lt;/div&gt;&lt;div&gt;(filename)&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#66B2FF;" vertex="1" parent="1">
+          <mxGeometry x="2400" y="42" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="iicLnVmGQJoIKl0AOZ3f-215" value="&lt;div&gt;removeplaylist&lt;/div&gt;&lt;div&gt;(filename)&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#66B2FF;" vertex="1" parent="1">
+          <mxGeometry x="2820" y="42.5" width="100" height="40" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
