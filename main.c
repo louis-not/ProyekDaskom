@@ -31,6 +31,7 @@ int main (){
 				printf("Available Playlist:\n1. myPlaylist A\n2. myPlaylist B\n3. myPlaylist C\n");
 				printf("\nChoose a playlist:");
 				scanf("%d", &input) ;
+				system("cls") ;
 				while (1){
 					if ( input == 1) {
 						filename = "myPlaylist_A.txt" ;
@@ -49,17 +50,17 @@ int main (){
 						scanf("%d", &input) ;
 					} 
 				}
-				printf("\n\nOpening %s\n\n", filename) ;
+				printf("Opening %s\n\n", filename) ;
 				DisplayTable(filename) ;
 				fp = fopen(filename,"r") ;
 				printf("\n------------------------------------------\n") ;
-				printf("1. Edit Playlist\n2. Delete Playlist");
+				printf("1. Edit Playlist\n2. Delete Playlist\n3. Cancel");
 				printf("\n\nYour option:");
 				input = 0 ;
 				scanf("%d", &input) ;
 				while (1){
 					if ( input == 1){
-						printf("\n1. Add Song\n2. Remove song\n\nYour option: ") ;
+						printf("\n1. Add Song\n2. Remove song\n3. Cancel\n\nYour option: ") ;
 						input = 0 ;
 						scanf("%d", &input) ;
 						if ( input == 1){
@@ -92,6 +93,10 @@ int main (){
 								break ;
 								}
 							} while ( 1 ) ;
+						}else if ( input == 3){
+							system ("cls") ;
+							fclose(fp) ;
+							break ;
 						}
 						break ;						
 					} else if ( input == 2){
@@ -110,8 +115,12 @@ int main (){
 								system("cls") ;
 								break;
 							}
+					} else if ( input == 3){
+						system ("cls") ;
+						fclose(fp) ;
+						break ;
 					} else 	printf("Wrong input,Please make sure your input is between 0 to 3") ;
-				}
+				} 
 				break ;
 			case 2:
 				system("cls") ;
