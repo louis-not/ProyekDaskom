@@ -180,7 +180,7 @@ void DisplayTable(char *filename){
         }
         fclose(fp);
     } else {
-        perror("songlist.txt");
+        perror(filename);
     }       
 }   
 
