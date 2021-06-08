@@ -84,6 +84,7 @@ int main(){
 	
 
 // PROGRAM REMOVE DULU SKIP AJA :)
+
 //	while (i != 0)
 //	{
 //		if (cond == 1)
