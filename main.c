@@ -67,9 +67,10 @@ int main (){
 						scanf("%d", &input) ;
 						if ( input == 1){
 							system("cls");
-//								printf("ADD SONG\n"); // insert function here
+//								printf("ADD SONG\n"); 
 							addplaylist (filename) ;
 //							do{
+								// insert function here
 //								printf("Add another song? (y/n): ") ;
 //								scanf("%c", &yorno) ;
 //								system("cls");
@@ -127,6 +128,7 @@ int main (){
 				break ;
 			case 2:
 				system("cls") ;
+				printf("Your Songs:\n");
 				printf("\n") ;
 				filename = "songlist.txt";
 				DisplayTable(filename) ;
