@@ -262,6 +262,7 @@ void addplaylist (char *filename){
 	getdata("songlist.txt", songlist,&max);
 //	DisplayTable() ;
 	getdata(filename, songtitle, &songtitlemax);
+	songtitlebefore = songtitlemax;
 	do	{	
 		system("cls") ;
 		if (songtitlemax == 5) 
@@ -287,7 +288,7 @@ void addplaylist (char *filename){
 		printf("Add another song? (y/n): : ");
 		scanf(" %c", &yorno);		
 	} 	while (yorno == 'y' || yorno == 'Y');
-	FILE *fp = fopen(filename, "w");
+	FILE *fp = fopen(filename, "a");
 	for (i = songtitlebefore; i < songtitlemax ;i++)
 	{
 		fprintf(fp,"%d,%s,%s,%d\n",i+1,songtitle[i].title,songtitle[i].author,songtitle[i].year,i);
@@ -296,7 +297,7 @@ void addplaylist (char *filename){
 }
 
 void removeplaylist( char *filename){
-	FILE *fp = fopen(filename, "r+");
+	FILE *fp = fopen(filename, "r");
 	int i ,kounter = 0,year,a,max,remove;
     char testi[100],singer[100], *token,buf[100],comp[100]; 
     const char s[2] = ",";
