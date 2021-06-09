@@ -12,6 +12,8 @@ void DisplayTable(char*) ;
 int addSong(char*) ;
 void addplaylist(char*) ;
 void removeplaylist(char *) ;
+void getdata(char *filename, Song *songg,int *max);
+
 int main (){
 
 	int input;
@@ -64,19 +66,20 @@ int main (){
 						input = 0 ;
 						scanf("%d", &input) ;
 						if ( input == 1){
-							do{
-								DisplayTable(filename) ;
-								printf("ADD SONG\n"); // insert function here
-								
-								printf("Add another song? (y/n): ") ;
-								scanf("%c", &yorno) ;
-								system("cls");
-							if ( yorno == 'Y' || yorno == 'y') continue ;
-							else if ( yorno == 'N' || yorno == 'n') {
-								fclose(fp) ;
-								break ;
-								}
-							} while ( 1 ) ;
+							system("cls");
+//								printf("ADD SONG\n"); // insert function here
+							addplaylist (filename) ;
+//							do{
+//								printf("Add another song? (y/n): ") ;
+//								scanf("%c", &yorno) ;
+//								system("cls");
+//							if ( yorno == 'Y' || yorno == 'y') continue ;
+//							else if ( yorno == 'N' || yorno == 'n') {
+//								fclose(fp) ;
+//								break ;
+//								}
+//							} while ( 1 ) ;
+
 						} else if ( input == 2){
 							do{
 								system("cls");
@@ -250,6 +253,48 @@ int addSong (char *filename){
 	return 0 ;
 }
 
+void addplaylist (char *filename){
+	int i,max,songID,songtitlebefore,songtitlemax;
+    Song songlist[15];
+    Song songtitle[5];
+	char yorno,cond1;
+
+	getdata("songlist.txt", songlist,&max);
+//	DisplayTable() ;
+	getdata(filename, songtitle, &songtitlemax);
+	do	{	
+		system("cls") ;
+		if (songtitlemax == 5) 
+		{
+			printf("Maximum storage exceeded for this playlist,\nplease make room by removing a song\n\n");
+			break;
+		}
+		printf("song from your memory: \n");
+		DisplayTable("songlist.txt") ;
+		printf("Which song do you want to add into your playlist?(input songlist number) : ");
+		scanf("%d", &songID);
+
+		printf("You Choose %s to add to your playlist\n",songlist[songID-1].title);
+		printf("Continue ? (y/n) : ");
+		scanf(" %c", &yorno);
+		if (yorno == 'y' || yorno == 'Y') 
+		{	
+			strcpy(songtitle[songtitlemax].title,songlist[songID-1].title) ;
+			strcpy(songtitle[songtitlemax].author,songlist[songID-1].author);
+			songtitle[songtitlemax].year = songlist[songID-1].year ;
+			songtitlemax++;
+		}
+		printf("Add another song? (y/n): : ");
+		scanf(" %c", &yorno);		
+	} 	while (yorno == 'y' || yorno == 'Y');
+	FILE *fp = fopen(filename, "w");
+	for (i = songtitlebefore; i < songtitlemax ;i++)
+	{
+		fprintf(fp,"%d,%s,%s,%d\n",i+1,songtitle[i].title,songtitle[i].author,songtitle[i].year,i);
+	}
+	fclose(fp);	
+}
+
 void removeplaylist( char *filename){
 	FILE *fp = fopen(filename, "r+");
 	int i ,kounter = 0,year,a,max,remove;
@@ -324,3 +369,51 @@ void removeplaylist( char *filename){
 //	printf("\nClose %s\n", filename);
 	fclose(fp);
 }
+
+void getdata(char *filename, Song *songg,int *max)
+{
+	FILE *fp = fopen(filename, "r");
+	int i,year,a,cond = 0,remove,comp = 0;
+    char testi[100],singer[100], *token,buf[100];
+    const char s[2] = ",";
+   
+	while(fgets(buf, sizeof buf, fp) != NULL) 
+	{
+	comp++;
+	}
+	if (comp == 0) printf("Empty Playlist Detected!");
+	rewind(fp);
+
+	for (i = 0; i <comp  ; i++ )
+	{
+		fgets(buf, sizeof buf, fp);
+		{
+			token = strtok(buf, s);
+           	for(a=0;a<4;a++)
+        	{
+            	if (a == 1)
+                {
+                	strcpy(songg[i].title, token);
+                	token = strtok(NULL,s);
+				}
+				else if (a == 2)
+                {   
+                	strcpy(songg[i].author, token);
+                   	token = strtok(NULL,s);
+               	}       
+                else if (a == 3)
+                {
+                	songg[i].year = atoi(token);
+                	token = strtok(NULL,s);
+				}
+				else
+				{
+					token = strtok(NULL,s);
+				}
+            }
+		}
+	}
+	*max = comp;
+	fclose(fp);
+}
+

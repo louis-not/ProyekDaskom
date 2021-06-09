@@ -1,1 +1,5 @@
-1,Can't Stop,RHCP,2002
+1,Cintaku,Chrisye,1977
+2,Dekat di Hati,RAN,2013
+3,C.H.R.I.S.Y.E,diskoria,2021
+4,Cintaku,Chrisye,1977
+5,Cintaku,Chrisye,1977

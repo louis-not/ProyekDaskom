@@ -1,2 +1,5 @@
 1,Can't Stop,RHCP,2002
-2,Dekat di Hati,RAN,2013
+2,Scar Tissue,RHCP,1999
+3,Wonderwall,Oasis,1995
+4,Minefields,Fouzia,2020
+5,Levitating,Dua pipa,2021
