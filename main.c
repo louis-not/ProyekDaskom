@@ -66,7 +66,7 @@ int main (){
 						scanf("%d", &input) ;
 						if ( input == 1){
 							system("cls");
-								printf("ADD SONG\n"); 
+//								printf("ADD SONG\n"); 
 							
 							do{
 								addplaylist(filename) ;
@@ -150,7 +150,7 @@ int main (){
 				return 0 ;
 			default:
 				printf("\nWrong Input\n") ;
-				printf("Please make sure your input range between 0 to 4\n\n");
+				printf("Please make sure your input range between 0 to 5\n\n");
 		}
 	}
 	return 0 ;
