@@ -257,7 +257,7 @@ int addSong (char *filename){
 
 void addplaylist (char *filename){
 	FILE *fp = fopen("songlist.txt", "r");
-	int i,year,a,cond = 0,comp = 0,max,songID,songtitlebefore,songtitlemax;;
+	int i,a,cond = 0,comp = 0,max,songID,songtitlebefore,songtitlemax;;
     char testi[100],singer[100], *token,buf[100];
     const char s[2] = ",";
     Song songlist[15];
@@ -339,7 +339,6 @@ void addplaylist (char *filename){
 	songtitlemax = comp;
 	fclose(fp); 
 
-	songtitlebefore = songtitlemax;
 	char yorno;
 	system("cls") ;
 	if (songtitlemax == 5) 
@@ -350,33 +349,39 @@ void addplaylist (char *filename){
 	{
 		printf("song from your memory: \n");
 		DisplayTable("songlist.txt") ;
+
 		printf("Which song do you want to add into your playlist?(input songlist number) : ");
 		scanf("%d", &songID);
-
-		printf("You Choose %s to add to your playlist\n",songlist[songID-1].title);
-		printf("Continue ? (y/n) : ");
-		scanf(" %c", &yorno);
-		if (yorno == 'y' || yorno == 'Y') 
-		{	
-			strcpy(songtitle[songtitlemax].title,songlist[songID-1].title) ;
-			strcpy(songtitle[songtitlemax].author,songlist[songID-1].author);
-			songtitle[songtitlemax].year = songlist[songID-1].year ;
-			songtitlemax++;
-		}
-	
-		fp = fopen(filename, "w");
-		for (i = 0; i < songtitlemax ;i++)
+		
+		if (songID > 0 && songID < max) 
 		{
-		fprintf(fp,"%d,%s,%s,%d\n",i+1,songtitle[i].title,songtitle[i].author,songtitle[i].year,i);
+			printf("You Choose %s to add to your playlist\n",songlist[songID-1].title);
+			printf("Continue ? (y/n) : ");
+			scanf(" %c", &yorno);
+			if (yorno == 'y' || yorno == 'Y') 
+			{	
+				strcpy(songtitle[songtitlemax].title,songlist[songID-1].title) ;
+				strcpy(songtitle[songtitlemax].author,songlist[songID-1].author);
+				songtitle[songtitlemax].year = songlist[songID-1].year ;
+				songtitlemax++;
+			}
+			fp = fopen(filename, "w");
+			for (i = 0; i < songtitlemax ;i++)
+			{
+			fprintf(fp,"%d,%s,%s,%d\n",i+1,songtitle[i].title,songtitle[i].author,songtitle[i].year,i);
+			}
+			fclose(fp);
+			printf("\n\nCurrent Song After Editing :\n\n");
+			DisplayTable(filename);
 		}
-		fclose(fp);
+		else printf("\n\nSong Number Doesn't Exist!\n");
 	}
 
 }
 
 void removeplaylist( char *filename){
 	FILE *fp = fopen(filename, "r");
-	int i ,kounter = 0,year,a,max,remove;
+	int i,a,max,remove;
     char testi[100],singer[100], *token,buf[100],comp[100]; 
     const char s[2] = ",";
     
@@ -422,7 +427,7 @@ void removeplaylist( char *filename){
 	max = i;
 	printf("\nSelect which song that you want to remove(by number): ");
 	scanf("%d",&remove);
-	if (remove > 0)
+	if (remove > 0 && remove < max)
 	{
 		remove--;
 		for (remove; remove < max; remove++)
@@ -435,18 +440,19 @@ void removeplaylist( char *filename){
 		songtitle[max].title[0] = '\0';
 		songtitle[max].author[0] = '\0';
 		songtitle[max].year = 0;
-	};
+	}
+	else if (remove > max  || remove < 0 ) printf("\n\nSong Number Doesn't Exist!\n");
 	printf("\nCurrent Song After Editing \n\n");
-	for (i = 0; i < max ;i++)
-		printf("\n%d\t%s\t%s\t%d\n",i+1,songtitle[i].title,songtitle[i].author,songtitle[i].year);
-//	printf("Input All of the Playlist into %s\n", filename);
 	fp = fopen(filename, "w");
 	for (i = 0; i < max ;i++)
 	{
 		fprintf(fp,"%d,%s,%s,%d\n",i+1,songtitle[i].title,songtitle[i].author,songtitle[i].year,i);
 	}
-//	printf("\nClose %s\n", filename);
 	fclose(fp);
+	DisplayTable(filename);
+//	printf("Input All of the Playlist into %s\n", filename);
+//	printf("\nClose %s\n", filename);
+
 }
 
 
