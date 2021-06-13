@@ -382,7 +382,7 @@ void addplaylist (char *filename){
 void removeplaylist( char *filename){
 	FILE *fp = fopen(filename, "r");
 	int i,a,max,remove;
-    char testi[100],singer[100], *token,buf[100],comp[100]; 
+    char *token,buf[100],comp[100]; 
     const char s[2] = ",";
     
     Song songtitle[5];
