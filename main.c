@@ -371,6 +371,7 @@ void addplaylist (char *filename){
 			fprintf(fp,"%d,%s,%s,%d\n",i+1,songtitle[i].title,songtitle[i].author,songtitle[i].year,i);
 			}
 			fclose(fp);
+			
 			printf("\n\nCurrent Song After Editing :\n\n");
 			DisplayTable(filename);
 		}
@@ -427,7 +428,7 @@ void removeplaylist( char *filename){
 	max = i;
 	printf("\nSelect which song that you want to remove(by number): ");
 	scanf("%d",&remove);
-	if (remove > 0 && remove < max)
+	if (remove > 0 && remove < max+1)
 	{
 		remove--;
 		for (remove; remove < max; remove++)
