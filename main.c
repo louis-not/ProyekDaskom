@@ -353,7 +353,7 @@ void addplaylist (char *filename){
 		printf("Which song do you want to add into your playlist?(input songlist number) : ");
 		scanf("%d", &songID);
 		
-		if (songID > 0 && songID < max) 
+		if (songID > 0 && songID < max+1) 
 		{
 			printf("You Choose %s to add to your playlist\n",songlist[songID-1].title);
 			printf("Continue ? (y/n) : ");
@@ -442,7 +442,7 @@ void removeplaylist( char *filename){
 		songtitle[max].author[0] = '\0';
 		songtitle[max].year = 0;
 	}
-	else if (remove > max  || remove < 0 ) printf("\n\nSong Number Doesn't Exist!\n");
+	else if (remove > max+1  || remove < 1 ) printf("\n\nSong Number Doesn't Exist!\n");
 	printf("\nCurrent Song After Editing \n\n");
 	fp = fopen(filename, "w");
 	for (i = 0; i < max ;i++)
